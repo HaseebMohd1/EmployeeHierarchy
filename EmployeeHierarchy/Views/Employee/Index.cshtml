@@ -1,0 +1,29 @@
+﻿@model List<EmployeeHierarchy.Models.Employee>
+
+@{
+    void RenderNode(EmployeeHierarchy.Models.Employee node)
+    {
+        <li>
+            <div>
+                <strong>@node.Name</strong> - @node.Designation
+            </div>
+
+            @if ( node.Subordinates.Any() )
+            {
+                <ul>
+                    @foreach ( var subNode in node.Subordinates )
+                    {
+                        RenderNode(subNode);
+                    }
+                </ul>
+            }
+        </li>
+    }
+}
+
+<ul>
+    @foreach ( var employee in Model )
+    {
+        RenderNode(employee);
+    }
+</ul>

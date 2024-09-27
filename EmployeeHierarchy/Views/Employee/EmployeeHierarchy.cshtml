@@ -1,0 +1,14 @@
+﻿@model List<EmployeeHierarchy.Models.Employee>
+
+@foreach (var employee in Model)
+{
+    <div style="margin-left: 20px;">
+        <h2>@employee.Name</h2>
+        <p>@employee.Designation</p>
+
+        @if (employee.Subordinates.Any())
+        {
+            @Html.Partial("EmployeeHierarchy", employee.Subordinates)
+        }
+    </div>
+}
